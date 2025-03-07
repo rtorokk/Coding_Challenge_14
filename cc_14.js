@@ -65,4 +65,24 @@ document.getElementById('ticketContainer').addEventListener('click', function(ev
     }
 });
 
+// Task 5: Inline Editing of Support Tickets
+
+document.getElementById('ticketContainer').addEventListener('dblclick', function(event) {
+    if (event.target.tagName === 'H3' || event.target.tagName === 'P' || event.target.classList.contains('priority')) {
+        let currentText = event.target.textContent; // Get the current text content of the element
+        let input = document.createElement('input'); // Create an input element
+        input.type = 'text'; // Set the input type to text
+        input.value = currentText; // Set the input value to the current text content
+        event.target.replaceWith(input); // Replace the clicked element with the input element
+
+        input.addEventListener('blur', function() {
+           let updatedText = document.createElement(event.target.tagName === "H3" ? "h3" : event.target.tagName === "P" ? "p" : "span"); // Create a new element with the same tag name as the original element
+              updatedText.textContent = input.value; // Set the text content of the new element to the input value
+              if (event.target.classList.contains("priority")) updatedText.classList.add("priority"); // Add the priority class if the original element had the priority class
+                input.replaceWith(updatedText); // Replace the input element with the new element
+        });
+        input.focus(); // Focus on the input element
+    }
+});
+
 
