@@ -53,3 +53,16 @@ function highlightHighPriority() {
 
 // Call function when a ticket is added
 document.getElementById("addTicketButton").addEventListener("click", highlightHighPriority);
+
+// Task 4: Implementing Ticket Resolution with Event Bubbling
+
+document.getElementById('ticketContainer').addEventListener('click', function(event) {
+    if(event.target.classList.contains('resolveButton')) {
+        event.stopPropagation(); // Stop the event from bubbling up
+        event.target.parentElement.remove(); // Remove the ticket when the resolve button is clicked
+    } else {
+        console.log("Clicked outside the resolve button");
+    }
+});
+
+
