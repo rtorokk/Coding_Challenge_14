@@ -24,6 +24,7 @@ function addSupportTicket() {
     priority.classList.add('priority', 'VeryHigh'); // Add the priority and VeryHigh classes to the priority element
     priority.textContent = "Priority: VeryHigh"; // Set the text content of the priority element
 
+
     // Create a new button element for the resolve button
     const resolveButton = document.createElement('button'); // Create a new button element for the resolve button
     resolveButton.textContent = "Resolve"; // Set the text content of the resolve button
@@ -37,5 +38,18 @@ function addSupportTicket() {
     ticketContainer.appendChild(ticket); // Append the ticket to the ticket container
 }
 
+// Task 3: Converting NodeLists to Arrays for Bulk Updates
 
+// Function to highlight high priority tickets
+function highlightHighPriority() {
+    const highPriorityTickets = document.querySelectorAll(".VeryHigh"); // Get all tickets with the VeryHigh class
+    const ticketsArray = Array.from(highPriorityTickets); // Convert the NodeList to an array
 
+    ticketsArray.forEach(ticket => {
+        ticket.parentElement.style.border = "2px groove red"; // Change the border of the ticket to a red groove
+        ticket.parentElement.style.backgroundColor = "HotPink"; // Change the background color of the ticket to HotPink
+    });
+}
+
+// Call function when a ticket is added
+document.getElementById("addTicketButton").addEventListener("click", highlightHighPriority);
